@@ -17,11 +17,20 @@ const display1El = document.querySelector(".display-1");
     haveDot = true;  
    } else if (e.target.innerText === "." && haveDot) {  
     return;  
-   }  
-   if(dis2Num.length<8){
-    dis2Num += e.target.innerText;  
-    display2El.innerText = dis2Num;  
-   }  
+   }
+   if(haveDot){
+	if(dis2Num.split(".")[1]!=undefined && dis2Num.split(".")[1].length>2){
+		return;
+	}
+   dis2Num += e.target.innerText;  
+   display2El.innerText = dis2Num;  
+   }
+   else if(dis2Num.length<8) {
+	   dis2Num += e.target.innerText;
+	   display2El.innerText = dis2Num;
+   } else {
+	   //do nothing
+   }
    // console.log();  
   });  
  });  
@@ -31,7 +40,7 @@ const display1El = document.querySelector(".display-1");
    haveDot = false;  
    const operationName = e.target.innerText;  
    if (dis1Num && dis2Num && lastOperation) {  
-    mathOperation();  
+    mathOperation();  	
    } else {  
     result = parseFloat(dis2Num);  
    }  
@@ -41,11 +50,11 @@ const display1El = document.querySelector(".display-1");
   });  
  });  
  function clearVar(name = "") {  
-  dis1Num += dis2Num + " " + name + " ";  
+  dis1Num = result + " " + name + " ";  
   display1El.innerText = dis1Num;  
   display2El.innerText = "";  
   dis2Num = "";  
-  tempResultEl.innerText = result;  
+  tempResultEl.innerText = result; 
  }  
  function mathOperation() {  
   if (lastOperation === "x") {  
@@ -66,16 +75,18 @@ const display1El = document.querySelector(".display-1");
     if (!dis2Num || !dis1Num) return;  
      haveDot = false;  
     mathOperation();  
-    clearVar();  
-        var resultDuplicate = result.toString();
-        if(resultDuplicate.length>8)
-        {
-            result = "ERR";
-        }
+    clearVar();
+		result = result%1!==0 ? result.toFixed(3) : result;
+	 //checking if it is having any decimal points 
+		var resultDuplicate = result.toString();
+	if(resultDuplicate.length >8){
+		result = "ERR";
+	}
+	display1El.innerText = "";  
     display2El.innerText = result;  
     tempResultEl.innerText = "";  
     dis2Num = result;  
-    dis1Num = "";  
+    dis1Num = "";  	
  });  
  clearAllEl.addEventListener("click", () => {  
   dis1Num = "";  
@@ -125,7 +136,7 @@ const display1El = document.querySelector(".display-1");
  function clickOperation(key) {  
   operationEl.forEach((operation) => {  
    if (operation.innerText === key) {  
-    operation.click();  
+    operation.click(); 
    }  
   });  
  }  
