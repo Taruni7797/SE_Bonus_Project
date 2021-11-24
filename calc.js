@@ -17,7 +17,7 @@ const display1El = document.querySelector(".display-1");
     haveDot = true;  
    } else if (e.target.innerText === "." && haveDot) {  
     return;  
-   }  
+   }
    if(haveDot){
 	if(dis2Num.split(".")[1]!=undefined && dis2Num.split(".")[1].length>2){
 		return;
