@@ -40,7 +40,7 @@ const display1El = document.querySelector(".display-1");
    haveDot = false;  
    const operationName = e.target.innerText;  
    if (dis1Num && dis2Num && lastOperation) {  
-    mathOperation();  
+    mathOperation();  	
    } else {  
     result = parseFloat(dis2Num);  
    }  
@@ -50,11 +50,11 @@ const display1El = document.querySelector(".display-1");
   });  
  });  
  function clearVar(name = "") {  
-  dis1Num += dis2Num + " " + name + " ";  
+  dis1Num = result + " " + name + " ";  
   display1El.innerText = dis1Num;  
   display2El.innerText = "";  
   dis2Num = "";  
-  tempResultEl.innerText = result;  
+  tempResultEl.innerText = result; 
  }  
  function mathOperation() {  
   if (lastOperation === "x") {  
@@ -75,12 +75,17 @@ const display1El = document.querySelector(".display-1");
     if (!dis2Num || !dis1Num) return;  
      haveDot = false;  
     mathOperation();  
-    clearVar();  
+    clearVar();
 		result = result%1!==0 ? result.toFixed(3) : result;
+		var resultDuplicate = result.toString();
+	if(resultDuplicate.length >8){
+		result = "ERR";
+	}
+	display1El.innerText = "";  
     display2El.innerText = result;  
     tempResultEl.innerText = "";  
     dis2Num = result;  
-    dis1Num = "";  
+    dis1Num = "";  	
  });  
  clearAllEl.addEventListener("click", () => {  
   dis1Num = "";  
