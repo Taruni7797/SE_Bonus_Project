@@ -77,6 +77,7 @@ const display1El = document.querySelector(".display-1");
     mathOperation();  
     clearVar();
 		result = result%1!==0 ? result.toFixed(3) : result;
+	 //checking if it is having any decimal points 
 		var resultDuplicate = result.toString();
 	if(resultDuplicate.length >8){
 		result = "ERR";
