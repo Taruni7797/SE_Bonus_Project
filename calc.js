@@ -17,20 +17,20 @@ const display1El = document.querySelector(".display-1");
     haveDot = true;  
    } else if (e.target.innerText === "." && haveDot) {  
     return;  
-   }
+   }  
    if(haveDot){
-	   if(dis2Num.split(".")[1]!=undefined && dis2Num.split(".")[1].length>2){
-		   return;
-	   }
-		dis2Num += e.target.innerText;  
-		display2El.innerText = dis2Num; 
-   }
-   else if(dis2Num.length<8)   {
+	if(dis2Num.split(".")[1]!=undefined && dis2Num.split(".")[1].length>2){
+		return;
+	}
    dis2Num += e.target.innerText;  
    display2El.innerText = dis2Num;  
-  }else{
-	  //do-Nothing
-  }
+   }
+   else if(dis2Num.length<8) {
+	   dis2Num += e.target.innerText;
+	   display2El.innerText = dis2Num;
+   } else {
+	   //do nothing
+   }
    // console.log();  
   });  
  });  
@@ -85,8 +85,7 @@ const display1El = document.querySelector(".display-1");
     display2El.innerText = result;  
     tempResultEl.innerText = "";  
     dis2Num = result;  
-    dis1Num = "";  
-	
+    dis1Num = "";  	
  });  
  clearAllEl.addEventListener("click", () => {  
   dis1Num = "";  
